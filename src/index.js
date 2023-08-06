@@ -6,6 +6,7 @@ import { Navbar } from "./components/layout";
 import { Login } from "./components/login";
 import Products from "./components/products";
 import Home from "./components/home";
+import Protected from "./components/protected";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -14,7 +15,7 @@ root.render(
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="products" element={<Products />} />
+        <Route path="products" element={<Protected Component={Products} />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

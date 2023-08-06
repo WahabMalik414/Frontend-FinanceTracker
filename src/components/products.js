@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 function Products() {
   const [products, setProducts] = useState([]);
 
@@ -12,7 +13,7 @@ function Products() {
       console.log(error);
     }
   };
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetchProducts();
   }, []); // Empty dependency array to fetch products only once
@@ -31,6 +32,16 @@ function Products() {
         onClick={fetchProducts}
       >
         Refresh
+      </button>
+      <button
+        type="button"
+        className="btn btn-outline-primary me-2"
+        onClick={() => {
+          Cookies.remove("access-token");
+          navigate("/login");
+        }}
+      >
+        Logout
       </button>
       <table className="table">
         <thead>

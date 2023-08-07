@@ -4,6 +4,26 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 function Products() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  const handleLogout = async (req, res) => {
+    console.log("logging out!");
+    try {
+      const response = await axios({
+        method: "get",
+        url: "http://localhost:3005/user/logout",
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        console.log("Logged out!");
+        navigate("/login");
+      } else {
+        console.log(response.status);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchProducts = async () => {
     try {
@@ -13,7 +33,6 @@ function Products() {
       console.log(error);
     }
   };
-  const navigate = useNavigate();
   useEffect(() => {
     fetchProducts();
   }, []); // Empty dependency array to fetch products only once
@@ -36,10 +55,13 @@ function Products() {
       <button
         type="button"
         className="btn btn-outline-primary me-2"
-        onClick={() => {
+        onClick={
+          handleLogout
+          /*
           Cookies.remove("access-token");
           navigate("/login");
-        }}
+          */
+        }
       >
         Logout
       </button>

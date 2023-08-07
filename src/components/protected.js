@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+
 function Protected(props) {
   const { Component } = props;
   const navigate = useNavigate();

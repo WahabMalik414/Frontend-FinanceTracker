@@ -7,6 +7,7 @@ import { Login } from "./components/login";
 import Products from "./components/products";
 import Home from "./components/home";
 import Protected from "./components/protected";
+import SignUp from "./components/register";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ root.render(
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="products" element={<Protected Component={Products} />} />
       </Routes>
     </BrowserRouter>

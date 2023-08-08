@@ -27,8 +27,13 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3004/products");
+      const response = await axios({
+        method: "get",
+        url: "http://localhost:3005/products",
+        withCredentials: true,
+      });
       setProducts(response.data); // Extract response data
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +83,7 @@ function Products() {
           {products.map((product, index) => {
             return (
               <tr key={index}>
-                <td>{product.id}</td>
+                <td>{product._id}</td>
                 <td>{product.name}</td>
                 <td>Rs. {product.price}</td>
                 <td style={{ width: "10px", whiteSpace: "nowrap" }}>

@@ -71,7 +71,6 @@ function Protected(props) {
       {
         isAuthenticated ? (
           <>
-            <h1>protected</h1>
             <Component />
           </>
         ) : null // No need to render anything here

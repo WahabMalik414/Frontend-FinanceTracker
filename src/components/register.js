@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { Navigate, useNavigate } from "react-router-dom";
 export default function SignUp() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   //Implement okay response here!
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +16,10 @@ export default function SignUp() {
         withCredentials: "true",
         data: { userName, email, password },
       });
+      setUserName("");
+      setEmail("");
+      setPassword("");
+      navigate("/login");
     } catch (e) {
       console.log(e);
     }

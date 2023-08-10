@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import Create from "./create";
 function Products() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+
+  const handleCreate = () => {
+    navigate("/create");
+  };
 
   const handleLogout = async (req, res) => {
     console.log("logging out!");
@@ -46,7 +51,11 @@ function Products() {
     <>
       <h2 className="text-center mb-3">List of Products</h2>
 
-      <button type="button" className="btn btn-primary me-2" onClick={() => {}}>
+      <button
+        type="button"
+        className="btn btn-primary me-2"
+        onClick={handleCreate}
+      >
         Create
       </button>
 

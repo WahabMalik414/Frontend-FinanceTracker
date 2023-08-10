@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +62,7 @@ export const Login = () => {
           <p>Want an account?</p>
           <span className="line">
             {/* Put react router link here */}
-            <a href="#">Sign up</a>
+            <Link to="/register">Sign up</Link>
           </span>
         </div>
       </div>

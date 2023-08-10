@@ -54,6 +54,15 @@ export default function Create() {
               <button className="btn btn-primary signin-button">
                 Create product
               </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/products");
+                }}
+                className="btn btn-danger cancel-button"
+              >
+                Cancel
+              </button>
             </form>
           </div>
         </div>

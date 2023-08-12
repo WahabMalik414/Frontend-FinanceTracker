@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,7 +13,7 @@ function Protected(props) {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:3005/user/validate",
+        url: `${process.env.REACT_APP_BACKEND}/user/validate`,
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -27,7 +26,7 @@ function Protected(props) {
       if (error.response.status === 401) {
         setIsAuthenticated(0);
         navigate("/login");
-        toast.success("Server error: Unathorized", {
+        toast.error("Server error: Unathorized", {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: false,
@@ -40,43 +39,11 @@ function Protected(props) {
       }
     }
   };
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     checkValidation();
   }, []);
 
-  /*
-  useEffect(() => {
-    console.log("here");
-    const checkToken = async () => {
-      try {
-        console.log("In try catch");
-        const res = await axios({
-          method: "post",
-          url: "http://localhost:3005/user/validate",
-          withCredentials: true,
-        });
-        console.log("out of try catch!");
-        console.log(res);
-        if (res.status === 200) {
-          console.log("Authenticated!");
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-          console.log("Not Authenticated!");
-          navigate("/login"); // Redirect to login page
-        }
-      } catch (error) {
-        console.log("encountered error!");
-        setIsAuthenticated(false);
-        navigate("/login"); // Redirect to login page
-      }
-    };
-    checkToken();
-  }, []);
-
-  console.log(isAuthenticated);
-*/
   return (
     <div>
       {

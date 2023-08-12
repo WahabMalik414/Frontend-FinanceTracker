@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import Create from "./create";
-import Edit from "./Edit";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Products() {
   const [productsData, setProductsData] = useState({
     products: [],
@@ -29,18 +27,45 @@ function Products() {
     try {
       const response = await axios({
         method: "delete",
-        url: `http://localhost:3005/product/${id}`,
+        url: `${process.env.REACT_APP_BACKEND}/product/${id}`,
         withCredentials: true,
       });
       if (response.status === 200) {
-        alert("Deleted successfully!");
+        toast.success("Deleted successfully!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         fetchProducts();
       }
     } catch (error) {
       if (error.response.status === 404) {
-        alert("Product not found!");
+        toast.error("Error, Product not found!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       } else if (error.response.status === 401) {
-        alert("Unauthorized access!");
+        toast.error("Server error: Unathorized Access", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     }
   };
@@ -49,14 +74,33 @@ function Products() {
     try {
       const response = await axios({
         method: "get",
-        url: "http://localhost:3005/user/logout",
+        url: `${process.env.REACT_APP_BACKEND}/user/logout`,
         withCredentials: true,
       });
       if (response.status === 200) {
         navigate("/login");
+        toast.success("Logged out!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
-      alert("Some error occurred!");
+      toast.error("Network Error", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
@@ -64,7 +108,7 @@ function Products() {
     try {
       const response = await axios({
         method: "get",
-        url: "http://localhost:3005/products",
+        url: `${process.env.REACT_APP_BACKEND}/products`,
         withCredentials: true,
       });
       if (response.status === 200) {

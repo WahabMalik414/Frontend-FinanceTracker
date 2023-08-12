@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,14 +13,39 @@ export const Login = () => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:3005/user/login",
+        url: `${process.env.REACT_APP_BACKEND}/user/login`,
         data: { email, password },
         withCredentials: true,
       });
-      setEmail("");
-      setPassword("");
-      navigate("/products");
-    } catch (error) {}
+      if (response.status === 200) {
+        setEmail("");
+        setPassword("");
+        navigate("/products");
+        toast.success("Login successfully!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {
+      if (error.response.status === 404) {
+        toast.error("Invalid email or password", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    }
   };
   return (
     <div className="container mt-5">

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function SignUp() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,7 +15,7 @@ export default function SignUp() {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:3005/user/register",
+        url: `${process.env.REACT_APP_BACKEND}/user/register`,
         withCredentials: "true",
         data: { userName, email, password, salary },
       });
@@ -22,15 +24,42 @@ export default function SignUp() {
       setPassword("");
       setSalary("");
       if (response.status === 200) {
-        alert("Successfully registered!");
+        toast.success("Successfully registered!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         navigate("/login");
       }
     } catch (error) {
       if (error.response.status === 500) {
-        alert("User already registered, please proceed to login!");
+        toast.error("User already registered, proceed to login", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         navigate("/login");
       } else if (error.response.status === 404) {
-        alert("Can't create user, please try again!");
+        toast.error("can't create user, try again", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     }
   };

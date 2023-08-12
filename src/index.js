@@ -1,29 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/layout";
-import { Login } from "./components/login";
-import { ToastContainer, toast } from "react-toastify";
-import Products from "./components/products";
-import Home from "./components/home";
-import Protected from "./components/protected";
-import SignUp from "./components/register";
-import Create from "./components/create";
-import Edit from "./components/Edit";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<SignUp />} />
-        <Route path="products" element={<Protected Component={Products} />} />
-        <Route path="create" element={<Protected Component={Create} />} />
-        <Route path="edit" element={<Protected Component={Edit} />} />
-      </Routes>
-    </BrowserRouter>
+    <App />
+    <ToastContainer
+      position="top-center"
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+    />
   </React.StrictMode>
 );
 

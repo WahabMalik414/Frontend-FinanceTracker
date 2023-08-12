@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
+import "react-toastify/dist/ReactToastify.css";
 export default function Edit() {
   const location = useLocation();
   const { name: initialName, price: initialPrice, id } = location.state;
@@ -20,7 +20,7 @@ export default function Edit() {
 
     try {
       const response = await axios.put(
-        `http://localhost:3005/product/${id}`,
+        `${process.env.REACT_APP_BACKEND}/product/${id}`,
         { name: newName, price: newPrice },
         {
           withCredentials: true,
@@ -30,9 +30,29 @@ export default function Edit() {
         setNewName("");
         setNewPrice("");
         navigate("/products");
+        toast.success("Updated successfully!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
       if (error.response.status === 401) {
+        toast.error("Server error: Unathorized Access", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         setNewName("");
         setNewPrice("");
         navigate("/login");

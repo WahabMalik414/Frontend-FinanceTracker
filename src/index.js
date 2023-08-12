@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout";
 import { Login } from "./components/login";
+import { ToastContainer, toast } from "react-toastify";
 import Products from "./components/products";
 import Home from "./components/home";
 import Protected from "./components/protected";
@@ -14,7 +15,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/login" element={<Login />} />

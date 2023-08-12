@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Edit() {
   const location = useLocation();
@@ -25,17 +26,17 @@ export default function Edit() {
           withCredentials: true,
         }
       );
-
       if (response.status === 200) {
-        console.log("Product updated successfully");
         setNewName("");
         setNewPrice("");
         navigate("/products");
-      } else {
-        console.log("Error updating product");
       }
     } catch (error) {
-      console.log("Error updating product:", error);
+      if (error.response.status === 401) {
+        setNewName("");
+        setNewPrice("");
+        navigate("/login");
+      }
     }
   };
 

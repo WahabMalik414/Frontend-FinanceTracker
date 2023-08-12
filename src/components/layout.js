@@ -5,7 +5,7 @@ export function Navbar() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Navbar
+          Finance Application
         </Link>
         <button
           className="navbar-toggler"
@@ -27,12 +27,12 @@ export function Navbar() {
             </li>
             <li className="nav-item active">
               <Link className="nav-link" to="/products">
-                Products
+                Records
               </Link>
             </li>
             <li className="nav-item active">
               <Link className="nav-link " aria-current="page" to="/login">
-                login
+                Login
               </Link>
             </li>
           </ul>

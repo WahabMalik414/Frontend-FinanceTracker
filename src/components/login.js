@@ -5,12 +5,7 @@ import { Link } from "react-router-dom";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,20 +16,16 @@ export const Login = () => {
         data: { email, password },
         withCredentials: true,
       });
-      console.log(response?.data);
-      const accessToken = response?.data?.accessToken;
-      //const roles = response?.data?.roles;
       setEmail("");
       setPassword("");
-      setSuccess(true);
       navigate("/products");
     } catch (error) {}
   };
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6 mb-3">
-          <h1>Sign In</h1>
+        <div className="col-md-5 mb-3">
+          <h1 className="text-center">Sign In</h1>
           <form onSubmit={handleSubmit} className="signin-form">
             <div className="form-group">
               <label htmlFor="email">Email:</label>
@@ -57,13 +48,21 @@ export const Login = () => {
                 value={password}
               />
             </div>
-            <button className="btn btn-primary signin-button">Sign In</button>
+            <div className="pt-3">
+              <button className="btn btn-primary signin-button me-2">
+                Sign In
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/register");
+                }}
+                className="btn btn-success signin-button "
+              >
+                Sign up
+              </button>
+            </div>
           </form>
-          <p>Want an account?</p>
-          <span className="line">
-            {/* Put react router link here */}
-            <Link to="/register">Sign up</Link>
-          </span>
         </div>
       </div>
     </div>

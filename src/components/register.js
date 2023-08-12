@@ -5,6 +5,7 @@ export default function SignUp() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [salary, setSalary] = useState(0);
   const navigate = useNavigate();
   //Implement okay response here!
   const handleSubmit = async (e) => {
@@ -14,22 +15,31 @@ export default function SignUp() {
         method: "post",
         url: "http://localhost:3005/user/register",
         withCredentials: "true",
-        data: { userName, email, password },
+        data: { userName, email, password, salary },
       });
       setUserName("");
       setEmail("");
       setPassword("");
-      navigate("/login");
-    } catch (e) {
-      console.log(e);
+      setSalary("");
+      if (response.status === 200) {
+        alert("Successfully registered!");
+        navigate("/login");
+      }
+    } catch (error) {
+      if (error.response.status === 500) {
+        alert("User already registered, please proceed to login!");
+        navigate("/login");
+      } else if (error.response.status === 404) {
+        alert("Can't create user, please try again!");
+      }
     }
   };
   return (
     <>
       <div className="container mt-5">
         <div className="row justify-content-center">
-          <div className="col-md-6 mb-3">
-            <h1>Sign up</h1>
+          <div className="col-md-5 mb-3">
+            <h1 className="text-center">Sign up</h1>
             <form onSubmit={handleSubmit} className="signin-form">
               <div className="form-group">
                 <label htmlFor="name">Name:</label>
@@ -41,6 +51,17 @@ export default function SignUp() {
                   value={userName}
                   required
                 />
+                <div className="form-group">
+                  <label htmlFor="salary">Salary:</label>
+                  <input
+                    type="text"
+                    id="salary"
+                    className="form-control"
+                    onChange={(e) => setSalary(e.target.value)}
+                    value={salary}
+                    required
+                  />
+                </div>
               </div>
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
@@ -63,7 +84,20 @@ export default function SignUp() {
                   value={password}
                 />
               </div>
-              <button className="btn btn-primary signin-button">Sign In</button>
+              <div className="pt-3">
+                <button className="btn btn-primary signin-button me-2">
+                  Register
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/login");
+                  }}
+                  className="btn btn-danger signin-button "
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>

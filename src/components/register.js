@@ -15,7 +15,7 @@ export default function SignUp() {
     try {
       const response = await axios({
         method: "post",
-        url: "https://financewapp-589026a6b4b3.herokuapp.com/user/register",
+        url: `${process.env.REACT_APP_BACKEND}/user/register`,
         withCredentials: "true",
         data: { userName, email, password, salary },
       });

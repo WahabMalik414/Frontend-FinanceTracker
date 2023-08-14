@@ -13,7 +13,7 @@ export default function Create() {
     try {
       const response = await axios({
         method: "post",
-        url: "https://financewapp-589026a6b4b3.herokuapp.com/product",
+        url: `${process.env.REACT_APP_BACKEND}/product`,
         withCredentials: "true",
         data: { name, price },
       });

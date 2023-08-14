@@ -27,7 +27,7 @@ function Products() {
     try {
       const response = await axios({
         method: "delete",
-        url: `https://financewapp-589026a6b4b3.herokuapp.com/product/${id}`,
+        url: `${process.env.REACT_APP_BACKEND}/product/${id}`,
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -74,7 +74,7 @@ function Products() {
     try {
       const response = await axios({
         method: "get",
-        url: "https://financewapp-589026a6b4b3.herokuapp.com/user/logout",
+        url: `${process.env.REACT_APP_BACKEND}/user/logout`,
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -108,7 +108,7 @@ function Products() {
     try {
       const response = await axios({
         method: "get",
-        url: "https://financewapp-589026a6b4b3.herokuapp.com/products",
+        url: `${process.env.REACT_APP_BACKEND}/products`,
         withCredentials: true,
       });
       if (response.status === 200) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./components/login";
 import Products from "./components/products";
 import Protected from "./components/protected";

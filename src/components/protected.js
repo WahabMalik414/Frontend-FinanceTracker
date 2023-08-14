@@ -13,7 +13,7 @@ function Protected(props) {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:3005/user/validate",
+        url: "https://financewapp-589026a6b4b3.herokuapp.com/user/validate",
         withCredentials: true,
       });
       if (response.status === 200) {

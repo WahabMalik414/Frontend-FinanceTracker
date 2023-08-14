@@ -20,7 +20,7 @@ export default function Edit() {
 
     try {
       const response = await axios.put(
-        `http://localhost:3005/product/${id}`,
+        `https://financewapp-589026a6b4b3.herokuapp.com/product/${id}`,
         { name: newName, price: newPrice },
         {
           withCredentials: true,

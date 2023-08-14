@@ -10,8 +10,6 @@ function Protected(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(0);
 
   const checkValidation = async (req, res) => {
-    console.log(process.env.REACT_APP_BACKEND);
-
     try {
       const response = await axios({
         method: "post",

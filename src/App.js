@@ -9,7 +9,7 @@ import Edit from "./components/Edit";
 import Home from "./components/home";
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Home />
       <Routes>
         <Route path="/*" element={<Login />} />
@@ -18,7 +18,7 @@ function App() {
         <Route path="create" element={<Protected Component={Create} />} />
         <Route path="edit" element={<Protected Component={Edit} />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

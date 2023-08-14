@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./components/login";
 import Products from "./components/products";
 import Protected from "./components/protected";
@@ -9,7 +9,7 @@ import Edit from "./components/Edit";
 import Home from "./components/home";
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Home />
       <Routes>
         <Route path="/*" element={<Login />} />
@@ -18,7 +18,7 @@ function App() {
         <Route path="create" element={<Protected Component={Create} />} />
         <Route path="edit" element={<Protected Component={Edit} />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

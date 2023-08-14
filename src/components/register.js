@@ -15,7 +15,7 @@ export default function SignUp() {
     try {
       const response = await axios({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEND}/user/register`,
+        url: "http://localhost:3005/user/register",
         withCredentials: "true",
         data: { userName, email, password, salary },
       });

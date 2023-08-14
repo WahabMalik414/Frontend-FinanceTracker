@@ -20,7 +20,7 @@ export default function Edit() {
 
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND}/product/${id}`,
+        `http://localhost:3005/product/${id}`,
         { name: newName, price: newPrice },
         {
           withCredentials: true,

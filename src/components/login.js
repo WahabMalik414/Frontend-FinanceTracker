@@ -13,7 +13,7 @@ export const Login = () => {
     try {
       const response = await axios({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEND}/user/login`,
+        url: `http://localhost:3005/user/login`,
         data: { email, password },
         withCredentials: true,
       });

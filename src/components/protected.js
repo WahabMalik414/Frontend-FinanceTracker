@@ -13,7 +13,7 @@ function Protected(props) {
     try {
       const response = await axios({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEND}/user/validate`,
+        url: "http://localhost:3005/user/validate",
         withCredentials: true,
       });
       if (response.status === 200) {

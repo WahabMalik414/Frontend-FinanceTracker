@@ -13,7 +13,7 @@ export default function Create() {
     try {
       const response = await axios({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEND}/product`,
+        url: "http://localhost:3005/product",
         withCredentials: "true",
         data: { name, price },
       });

@@ -27,7 +27,7 @@ function Products() {
     try {
       const response = await axios({
         method: "delete",
-        url: `${process.env.REACT_APP_BACKEND}/product/${id}`,
+        url: `http://localhost:3005/product/${id}`,
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -74,7 +74,7 @@ function Products() {
     try {
       const response = await axios({
         method: "get",
-        url: `${process.env.REACT_APP_BACKEND}/user/logout`,
+        url: "http://localhost:3005/user/logout",
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -108,7 +108,7 @@ function Products() {
     try {
       const response = await axios({
         method: "get",
-        url: `${process.env.REACT_APP_BACKEND}/products`,
+        url: "http://localhost:3005/products",
         withCredentials: true,
       });
       if (response.status === 200) {

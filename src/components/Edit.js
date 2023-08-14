@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function Edit() {
   const location = useLocation();
@@ -89,21 +89,23 @@ export default function Edit() {
                   required
                 />
               </div>
-              <button
-                onClick={handleSubmit}
-                className="btn btn-primary signin-button"
-              >
-                Update Product
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/products");
-                }}
-                className="btn btn-danger signin-button"
-              >
-                Cancel
-              </button>
+              <div className="mt-3">
+                <button
+                  onClick={handleSubmit}
+                  className="btn btn-primary signin-button me-2"
+                >
+                  Update Product
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/products");
+                  }}
+                  className="btn btn-danger signin-button"
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>

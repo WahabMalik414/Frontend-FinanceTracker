@@ -18,6 +18,7 @@ export const Login = () => {
         withCredentials: true,
       });
       if (response.status === 200) {
+        localStorage.setItem("isAuthenticated", 1);
         setEmail("");
         setPassword("");
         navigate("/products");

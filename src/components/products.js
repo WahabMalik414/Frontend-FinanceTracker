@@ -78,6 +78,7 @@ function Products() {
         withCredentials: true,
       });
       if (response.status === 200) {
+        localStorage.setItem("isAuthenticated", 0);
         navigate("/login");
         toast.success("Logged out!", {
           position: "top-center",
